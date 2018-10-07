@@ -10,10 +10,8 @@
             <tr>
                 <th>Id</th>
                 <th>Description</th>
-                <th>Pays de départ</th>
-                <th>Ville d'arrivée</th>
-                <th>Ville de départ</th>
                 <th>Durée du circuit</th>
+                <th>Voir en détail</th>
             </tr>
         </thead>
         <tbody>
@@ -21,17 +19,17 @@
             <tr>
                 <td>{{ circuit.id }}</td>
                 <td>{{ circuit.description }}</td>
-                <td>{{ circuit.paysDepart }}</td>
-                <td>{{ circuit.villeArrivee }}</td>
-                <td>{{ circuit.villeDepart }}</td>
                 <td>{{ circuit.dureeCircuit }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="2">no circuits found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                <td>
+   <a href="{{ path('front_circuit_show', {id: circuit.id}) }}">détails</a>
+                </td>
+              </tr>
+          {% else %}
+              <tr>
+                  <td colspan="2">no circuits found</td>
+              </tr>
+          {% endfor %}
+          </tbody>
+      </table>
 
-{% endblock %} {# body #}
+  {% endblock %} {# body #}

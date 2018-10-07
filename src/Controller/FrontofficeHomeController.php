@@ -20,4 +20,19 @@ class FrontofficeHomeController extends AbstractController
         'circuits' => $circuits, 
         ]);
     }
+    /**
+     * Finds and displays a circuit entity.
+     *
+     * @Route("/circuit/{id}", name="front_circuit_show")
+     */
+    public function circuitShow($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $circuit = $em->getRepository(Circuit::class)->find($id);
+        dump($circuit);
+        return $this->render('front/circuit_show.html.twig', [
+        'circuit' => $circuit,
+        ]);
+    }
 }
+
