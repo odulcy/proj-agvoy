@@ -1,13 +1,11 @@
-This is a Symfony flex skeleton for a minimal Symfony AgVoy app
-project, used for teaching CSC4101 at Telecom SudParis.
+# Useful commands
 
-Composer packages can be found at
-https://packagist.org/packages/oberger/tspcsc4101-agvoy-skeleton
+Launch the web page:
 
-Code is available at :
+`php -S "[::0]":8000 -t public`
+
+Original Code is available at :
 https://gitlab.com/olberger/tspcsc4101-agvoy-skeleton
 
-To test, use :
+To get the original Code, use :
  $ composer create-project oberger/tspcsc4101-agvoy-skeleton agvoy-app
-
--- Olivier Berger
