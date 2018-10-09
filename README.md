@@ -1,5 +1,11 @@
 # Useful commands
 
+Don't forget to do :
+
+`composer update`
+
+after having cloned the repository.
+
 Launch the web page:
 
 `php -S "[::0]":8000 -t public`
