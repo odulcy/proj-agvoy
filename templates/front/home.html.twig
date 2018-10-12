@@ -3,7 +3,7 @@
 {% block title %}Hello!{% endblock %}
 
 {% block body %}
-    <h1>Liste des circuits</h1>
+    <h1>Liste des circuits programmés</h1>
 
     <table class="table">
         <thead>
@@ -12,23 +12,31 @@
                 <th>Description</th>
                 <th>Durée du circuit</th>
                 <th>Voir en détail</th>
+                <th>Prix</th>
+
             </tr>
         </thead>
         <tbody>
-        {% for circuit in circuits %}
+
+        {% for programmation in ProgrammationCircuits %}
             <tr>
-                <td>{{ circuit.id }}</td>
-                <td>{{ circuit.description }}</td>
-                <td>{{ circuit.dureeCircuit }}</td>
-                <td>
-   <a href="{{ path('front_circuit_show', {id: circuit.id}) }}">détails</a>
+              <td>{{programmation.circuit.id}}</td>
+              <td>{{programmation.circuit.description}}</td>
+              <td>{{programmation.circuit.dureeCircuit}}</td>
+               <a href="{{ path('front_circuit_show', {id: programmation.circuit.id}) }}">détails</a>
+               <td>{{ programmation.prix }}</td>
+              <td>
+   <a href="{{ path('front_circuit_show', {id: programmation.circuit.id}) }}">détails</a>
                 </td>
+
               </tr>
           {% else %}
               <tr>
                   <td colspan="2">no circuits found</td>
               </tr>
           {% endfor %}
+
+
           </tbody>
       </table>
 

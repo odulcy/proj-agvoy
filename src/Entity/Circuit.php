@@ -37,7 +37,7 @@ class Circuit
      * @ORM\Column(type="string", length=30, nullable=true)
      */
     private $villeDepart;
-  
+
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
@@ -48,9 +48,15 @@ class Circuit
      */
     private $etapes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProgrammationCircuit", mappedBy="circuit", orphanRemoval=true)
+     */
+    private $programmationCircuits;
+
     public function __construct()
     {
         $this->etapes = new ArrayCollection();
+        $this->programmationCircuits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -143,6 +149,37 @@ class Circuit
             // set the owning side to null (unless already changed)
             if ($etape->getCircuit() === $this) {
                 $etape->setCircuit(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ProgrammationCircuit[]
+     */
+    public function getProgrammationCircuits(): Collection
+    {
+        return $this->programmationCircuits;
+    }
+
+    public function addProgrammationCircuit(ProgrammationCircuit $programmationCircuit): self
+    {
+        if (!$this->programmationCircuits->contains($programmationCircuit)) {
+            $this->programmationCircuits[] = $programmationCircuit;
+            $programmationCircuit->setCircuit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgrammationCircuit(ProgrammationCircuit $programmationCircuit): self
+    {
+        if ($this->programmationCircuits->contains($programmationCircuit)) {
+            $this->programmationCircuits->removeElement($programmationCircuit);
+            // set the owning side to null (unless already changed)
+            if ($programmationCircuit->getCircuit() === $this) {
+                $programmationCircuit->setCircuit(null);
             }
         }
 

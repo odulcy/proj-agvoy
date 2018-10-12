@@ -9,7 +9,7 @@ use App\Entity\Circuit;
 class LoadCircuitData extends Fixture
 {
 	public function load(ObjectManager $manager)
-	{		
+	{
 		$circuit = new Circuit();
 		$circuit->setDescription('Andalousie');
 		$circuit->setPaysDepart('Espagne');
@@ -17,9 +17,9 @@ class LoadCircuitData extends Fixture
 		$circuit->setVilleArrivee('Séville');
 		$circuit->setDureeCircuit(4);
 		$manager->persist($circuit);
-		
+
 		$this->addReference('andalousie-circuit', $circuit);
-		
+
 		$circuit = new Circuit();
 		$circuit->setDescription('Vietnam');
 		$circuit->setPaysDepart('VietNam');
@@ -27,9 +27,9 @@ class LoadCircuitData extends Fixture
 		$circuit->setVilleArrivee('Hô Chi Minh');
 		$circuit->setDureeCircuit(4);
 		$manager->persist($circuit);
-		
+
 		$this->addReference('vietnam-circuit', $circuit);
-		
+
 		$circuit = new Circuit();
 		$circuit->setDescription('Ile de France');
 		$circuit->setPaysDepart('France');
@@ -37,9 +37,9 @@ class LoadCircuitData extends Fixture
 		$circuit->setVilleArrivee('Paris');
 		$circuit->setDureeCircuit(2);
 		$manager->persist($circuit);
-		
+
 		$this->addReference('idf-circuit', $circuit);
-		
+
 		$circuit = new Circuit();
 		$circuit->setDescription('Italie');
 		$circuit->setPaysDepart('Italie');
@@ -47,12 +47,12 @@ class LoadCircuitData extends Fixture
 		$circuit->setVilleArrivee('Rome');
 		$circuit->setDureeCircuit(4);
 		$manager->persist($circuit);
-		
+
 		$this->addReference('italie-circuit', $circuit);
-		
+
 		$manager->flush();
 	}
-	
+
 }
 // (1, 'Andalousie', 'Espagne', 'Grenade', 'Séville', 4),
 // (2, 'VietNam', 'VietNam', 'Hanoi', 'Hô Chi Minh', 4),
