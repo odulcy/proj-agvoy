@@ -1,8 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Circuit {{circuit.id}}{% endblock %}
+{% block title %}
+{% if circuit %}
+Circuit {{circuit.id}}
+{% else %}
+Erreur
+{% endif %}
+{% endblock %}
+
 
 {% block body %}
+{% if circuit %}
 <h1>Circuit {{circuit.id}}</h1>
 <table class="table">
     <thead>
@@ -47,6 +55,11 @@
 <tbody>
 </table>
 {% endfor %} {# etapes #}
+
+{% else %}
+<h1>Erreur</h1>
+<p>Aucun circuit trouvé</p>
+{% endif %}
 
 <a href="{{ path('frontoffice_home') }}">retour à l'accueil</a>
 {% endblock %} {# body #}
