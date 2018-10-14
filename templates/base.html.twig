@@ -3,7 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        {% endblock %}
     </head>
     <body>
         {% block body %}
@@ -19,6 +21,7 @@
 	{% endblock %} {# footer #}
 </body>
 	{% block javascripts %}
+        <script src="/js/bootstrap.min.js"></script>
 	{% endblock %} {# javascripts #}
 	{% block custompage_script %}
     {% endblock %} {# custompage_scripts #}
