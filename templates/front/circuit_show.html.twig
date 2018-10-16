@@ -15,13 +15,12 @@ Erreur
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
-            <td>id</td>
-            <td>description</td>
-            <td>paysDepart</td>
-            <td>villeArrivee</td>
-            <td>villeDepart</td>
-            <td>duree</td>
+            <th>Numéro du circuit</th>
+            <th>Description</th>
+            <th>Pays de départ</th>
+            <th>ville de départ</th>
+            <th>Ville d'arrivée</th>
+            <th>Durée de l'excurtion (en jours)</th>
         </tr>
     </thead>
     <tbody>
@@ -29,15 +28,14 @@ Erreur
             <td>{{ circuit.id }}</td>
             <td>{{ circuit.description}}</td>
             <td>{{ circuit.paysDepart }}</td>
-            <td>{{ circuit.villeArrivee }}</td>
             <td>{{ circuit.villeDepart }}</td>
+            <td>{{ circuit.villeArrivee }}</td>
             <td>{{ circuit.dureeCircuit }}</td>
         </tr>
     </tbody>
 </table>
 
 <h2>Etapes</h2>
-{%  for etape in circuit.etapes %}
 <table class="table">
 <thead>
   <tr>
@@ -47,19 +45,19 @@ Erreur
   </tr>
 </thead>
 <tbody>
+{%  for etape in circuit.etapes %}
   <tr>
     <td>{{ etape.numeroEtape }}</td>
     <td>{{ etape.villeEtape }}</td>
     <td>{{ etape.nombreJours }}</td>
   </tr>
+{% endfor %} {# etapes #}
 <tbody>
 </table>
-{% endfor %} {# etapes #}
 
 {% else %}
 <h1>Erreur</h1>
 <p>Aucun circuit trouvé</p>
 {% endif %}
 
-<a href="{{ path('frontoffice_home') }}">retour à l'accueil</a>
 {% endblock %} {# body #}
