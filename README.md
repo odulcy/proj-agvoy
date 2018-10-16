@@ -23,3 +23,6 @@ https://gitlab.com/olberger/tspcsc4101-agvoy-skeleton
 
 To get the original Code, use :
  $ composer create-project oberger/tspcsc4101-agvoy-skeleton agvoy-app
+
+A project created by Nathanel DENIS and Olivier DULCY, based on Olivier BERGER's
+work.
