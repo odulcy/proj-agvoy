@@ -1,34 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello!{% endblock %}
-
 {% block body %}
     <h1>Liste des circuits</h1>
 
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Description</th>
-                <th>Durée du circuit</th>
+                <th>Pays de départ</th>
+                <th>Ville de départ</th>
+                <th>Date de départ</th>
+                <th>Nombre de personnes</th>
+                <th>Prix</th>
                 <th>Voir en détail</th>
             </tr>
         </thead>
         <tbody>
-        {% for circuit in circuits %}
+          {% if programmationCircuits %}
+          {% for progCircuit in programmationCircuits %}
             <tr>
-                <td>{{ circuit.id }}</td>
-                <td>{{ circuit.description }}</td>
-                <td>{{ circuit.dureeCircuit }}</td>
-                <td>
-   <a href="{{ path('front_circuit_show', {id: circuit.id}) }}">détails</a>
-                </td>
-              </tr>
+                <td>{{ progCircuit.circuit.paysDepart }}</td>
+                <td>{{ progCircuit.circuit.villeDepart }}</td>
+                <td>{{ progCircuit.dateDepart|date("m/d/Y") }}</td>
+                <td>{{ progCircuit.nombrePersonnes }}</td>
+                <td>{{ progCircuit.prix }}</td>
+                <td> <a class="btn btn-info btn-outline-secondary" role="button" href="{{ path('front_circuit_show', {id:progCircuit.circuit.id}) }}">Détails</a></td>
+            </tr>
+          {% endfor %}
           {% else %}
               <tr>
-                  <td colspan="2">no circuits found</td>
+                  <td colspan="2">Aucun circuit trouvé.</td>
               </tr>
-          {% endfor %}
+          {% endif %}
           </tbody>
       </table>
 
