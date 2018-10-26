@@ -12,16 +12,19 @@
         {% endblock %}
     </head>
     <body> 
-      <div class="jumbotron text-center" style="margin-bottom:0">
+      <!-- <div class="jumbotron text-center" style="margin-bottom:0">
         <h1>Agence de Voyage GeorgiaTech</h1>
         <p>Pour aller encore plus loin qu'Evry...</p>
       </div>
+      -->
 
       {% block menu %}
-      <nav class="navbar navbar-expand-sm bg-dark navbar-dark"
-        style="margin-bottom : 10px">
+      <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary
+        bg-dark">
         <a class="navbar-brand" href="#">Logo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                                                     target="#collapsibleNavbar"
+                                                     aria-controls="navbarResponsive">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
