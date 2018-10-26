@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+
 use App\Entity\ProgrammationCircuit;
-use App\Entity\Circuit;
 
 class FrontofficeHomeController extends AbstractController
 {
@@ -34,13 +34,37 @@ class FrontofficeHomeController extends AbstractController
         foreach($programmationCircuits as $prog){
           if($id == $prog->getCircuit()->getId()){
             $circuit=$prog->getCircuit();
+            $this->likes($circuit->getId());
             break;
           }
         }
         dump($circuit);
+        //dump($this->get('session'));
         return $this->render('front/circuit_show.html.twig', [
         'circuit' => $circuit,
-        ]);
+      ]);
+    }
+    /*
+     * Manage likes
+     */ 
+    public function likes($id)
+    {
+        $likes = $this->get('session')->get('likes');
+        if(! $likes){
+          $likes=array();
+        }
+        // si l'identifiant n'est pas présent dans le tableau des likes, l'ajouter
+        if (! in_array($id, $likes) )
+        {
+            $likes[] = $id;
+        }
+        else
+        // sinon, le retirer du tableau
+        {
+            $likes = array_diff($likes, array($id));
+        }
+        $this->get('session')->set('likes', $likes);
+        dump($likes);
     }
 }
 
