@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Etape index{% endblock %}
+{% block title %}Administration : Liste des étapes{% endblock %}
 
 {% block body %}
-    <h1>Etape index</h1>
+    <h1>Administration : liste des étapes</h1>
 
     <table class="table">
         <thead>
@@ -12,7 +12,7 @@
                 <th>NumeroEtape</th>
                 <th>VilleEtape</th>
                 <th>NombreJours</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,17 +23,19 @@
                 <td>{{ etape.villeEtape }}</td>
                 <td>{{ etape.nombreJours }}</td>
                 <td>
-                    <a href="{{ path('admin_etape_show', {'id': etape.id}) }}">show</a>
-                    <a href="{{ path('admin_etape_edit', {'id': etape.id}) }}">edit</a>
+                    <a href="{{ path('admin_etape_show', {'id': etape.id})
+                      }}">Afficher</a>
+                    <a href="{{ path('admin_etape_edit', {'id': etape.id})
+                      }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucune étape trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('admin_etape_new') }}">Create new</a>
+    <a href="{{ path('admin_etape_new') }}">Créer une nouvelle étape</a>
 {% endblock %}
