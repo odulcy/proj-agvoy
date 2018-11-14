@@ -36,6 +36,7 @@ class BackofficeCircuitController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($circuit);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Circuit ajouté']);
 
             return $this->redirectToRoute('admin_circuit_index');
         }
