@@ -6,6 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+#Validation
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CircuitRepository")
  */
@@ -161,9 +164,13 @@ class Circuit
     public function getProgrammationCircuits(): Collection
     {
         return $this->programmationCircuits;
-    }
+    ô
 
-    public function addProgrammationCircuit(ProgrammationCircuit $programmationCircuit): self
+    public functio
+              $cation dans l’amélioration de la santé et des conditions de travail dthis->get('session')->getFlashBag()->add('success', ['Succès', 'Circuit ajouté']);
+
+              return $this->redirectToRoute('admin_circuit_index');
+ProgrammationCircuit $programmationCircuit): self
     {
         if (!$this->programmationCircuits->contains($programmationCircuit)) {
             $this->programmationCircuits[] = $programmationCircuit;

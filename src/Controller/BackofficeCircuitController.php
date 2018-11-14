@@ -32,19 +32,26 @@ class BackofficeCircuitController extends AbstractController
         $form = $this->createForm(CircuitType::class, $circuit);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($circuit);
-            $em->flush();
-            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Circuit ajouté']);
+        if($request->getMethod() === 'POST'){
+          if ($form->isSubmitted() && $form->isValid()) {
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($circuit);
+              $em->flush();
+              $this->get('session')->getFlashBag()->add('success', ['Succès', 'Circuit ajouté']);
 
-            return $this->redirectToRoute('admin_circuit_index');
+              return $this->redirectToRoute('admin_circuit_index');
+          }else{
+              $this->get('session')->getFlashBag()->add('error', ['Erreur', 'Champs invalides']);
+
+              return $this->redirectToRoute('admin_circuit_index'); 
+          }
         }
-
-        return $this->render('back/circuit/new.html.twig', [
-            'circuit' => $circuit,
-            'form' => $form->createView(),
-        ]);
+        else{
+          return $this->render('back/circuit/new.html.twig', [
+              'circuit' => $circuit,
+              'form' => $form->createView(),
+          ]);
+        }
     }
 
     /**
