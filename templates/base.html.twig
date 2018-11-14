@@ -56,6 +56,17 @@
       {% endblock %}
     </body>
     {% block javascripts %}
+    <script src="/js/sweetalert2.all.min.js"></script>
+<script>
+$(document).ready(function(){
+swal({
+  type: 'error',
+  title: 'Oops...',
+  text: 'Something went wrong!',
+  footer: '<a href>Why do I have this issue?</a>'
+})
+});
+</script>
     {% endblock %} {# javascripts #}
     {% block custompage_script %}
     {% endblock %} {# custompage_scripts #}
