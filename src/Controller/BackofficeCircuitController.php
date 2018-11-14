@@ -65,10 +65,11 @@ class BackofficeCircuitController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Modification apportée']);
 
             return $this->redirectToRoute('admin_circuit_edit', ['id' => $circuit->getId()]);
         }
-
+        
         return $this->render('back/circuit/edit.html.twig', [
             'circuit' => $circuit,
             'form' => $form->createView(),
@@ -84,6 +85,7 @@ class BackofficeCircuitController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->remove($circuit);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Circuit supprimé']);
         }
 
         return $this->redirectToRoute('back_circuit_index');

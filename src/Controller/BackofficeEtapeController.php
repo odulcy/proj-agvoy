@@ -36,6 +36,7 @@ class BackofficeEtapeController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($etape);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Etape ajoutée']);
 
             return $this->redirectToRoute('admin_etape_index');
         }
@@ -64,6 +65,7 @@ class BackofficeEtapeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Etape modifiée']);
 
             return $this->redirectToRoute('admin_etape_edit', ['id' => $etape->getId()]);
         }
@@ -83,6 +85,7 @@ class BackofficeEtapeController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->remove($etape);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Etape supprimée']);
         }
 
         return $this->redirectToRoute('admin_etape_index');
