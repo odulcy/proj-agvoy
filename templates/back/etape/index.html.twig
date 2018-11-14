@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Administration : Liste des étapes{% endblock %}
 
 {% block body %}
@@ -36,6 +37,5 @@
         {% endfor %}
         </tbody>
     </table>
-
     <a href="{{ path('admin_etape_new') }}">Créer une nouvelle étape</a>
 {% endblock %}
