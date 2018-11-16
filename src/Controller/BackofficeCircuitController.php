@@ -76,7 +76,6 @@ class BackofficeCircuitController extends AbstractController
 
             return $this->redirectToRoute('admin_circuit_edit', ['id' => $circuit->getId()]);
         }
-        
         return $this->render('back/circuit/edit.html.twig', [
             'circuit' => $circuit,
             'form' => $form->createView(),
