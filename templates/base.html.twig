@@ -33,7 +33,9 @@
             <a class="nav-link" href="/home">Liste des circuits</a>
           </li>
         </ul>
-      </div>  
+      </div> 
+    {{ knp_menu_render('main', {'currentClass': 'active'}) }}
+    {{ knp_menu_render('user', {'currentClass': 'active'}) }} 
     </nav>
     {% endblock %}
 
