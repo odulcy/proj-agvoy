@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{% if circuit %}
+Circuit {{circuit.id}}
+{% else %}
+Erreur
+{% endif %}
+{% endblock %}
+
+
+{% block body %}
+{% if circuit %}
+<h1 class="circuitTitle">Circuit n°{{circuit.id}}</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Numéro du circuit</th>
+            <th>Description</th>
+            <th>Pays de départ</th>
+            <th>ville de départ</th>
+            <th>Ville d'arrivée</th>
+            <th>Durée de l'excurtion (en jours)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ circuit.id }}</td>
+            <td>{{ circuit.description}}</td>
+            <td>{{ circuit.paysDepart }}</td>
+            <td>{{ circuit.villeDepart }}</td>
+            <td>{{ circuit.villeArrivee }}</td>
+            <td>{{ circuit.dureeCircuit }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 class="circuitTitle">Etapes</h2>
+<table class="table">
+<thead>
+  <tr>
+    <td>Numero de l'étape</td>
+    <td>Ville Etape</td>
+    <td>Nombre de jours</td>
+  </tr>
+</thead>
+<tbody>
+{%  for etape in circuit.etapes %}
+  <tr>
+    <td>{{ etape.numeroEtape }}</td>
+    <td>{{ etape.villeEtape }}</td>
+    <td>{{ etape.nombreJours }}</td>
+  </tr>
+{% endfor %} {# etapes #}
+<tbody>
+</table>
+
+{% else %}
+<h1>Erreur</h1>
+<p>Aucun circuit trouvé</p>
+{% endif %}
+
+{% endblock %} {# body #}

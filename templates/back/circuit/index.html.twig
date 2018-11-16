@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration : liste des circuits{% endblock %}
+
+{% block body %}
+    <h1>Administration : liste des circuits</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>PaysDepart</th>
+                <th>VilleArrivee</th>
+                <th>VilleDepart</th>
+                <th>DureeCircuit</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for circuit in circuits %}
+            <tr>
+                <td>{{ circuit.id }}</td>
+                <td>{{ circuit.description }}</td>
+                <td>{{ circuit.paysDepart }}</td>
+                <td>{{ circuit.villeArrivee }}</td>
+                <td>{{ circuit.villeDepart }}</td>
+                <td>{{ circuit.dureeCircuit }}</td>
+                <td>
+                    <a href="{{ path('admin_circuit_show', {'id': circuit.id})
+                      }}">Afficher</a>
+                    <a href="{{ path('admin_circuit_edit', {'id': circuit.id})
+                      }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun circuit trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_circuit_new') }}">Créer un nouveau circuit</a>
+{% endblock %}
