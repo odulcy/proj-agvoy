@@ -32,18 +32,26 @@ class BackofficeCircuitController extends AbstractController
         $form = $this->createForm(CircuitType::class, $circuit);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($circuit);
-            $em->flush();
+        if($request->getMethod() === 'POST'){
+          if ($form->isSubmitted() && $form->isValid()) {
+              $em = $this->getDoctrine()->getManager();
+              $em->persist($circuit);
+              $em->flush();
+              $this->get('session')->getFlashBag()->add('success', ['Succès', 'Circuit ajouté']);
 
-            return $this->redirectToRoute('admin_circuit_index');
+              return $this->redirectToRoute('admin_circuit_index');
+          }else{
+              $this->get('session')->getFlashBag()->add('error', ['Erreur', 'Champs invalides']);
+
+              return $this->redirectToRoute('admin_circuit_index'); 
+          }
         }
-
-        return $this->render('back/circuit/new.html.twig', [
-            'circuit' => $circuit,
-            'form' => $form->createView(),
-        ]);
+        else{
+          return $this->render('back/circuit/new.html.twig', [
+              'circuit' => $circuit,
+              'form' => $form->createView(),
+          ]);
+        }
     }
 
     /**
@@ -64,10 +72,10 @@ class BackofficeCircuitController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Modification apportée']);
 
             return $this->redirectToRoute('admin_circuit_edit', ['id' => $circuit->getId()]);
         }
-
         return $this->render('back/circuit/edit.html.twig', [
             'circuit' => $circuit,
             'form' => $form->createView(),
@@ -83,6 +91,7 @@ class BackofficeCircuitController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->remove($circuit);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Circuit supprimé']);
         }
 
         return $this->redirectToRoute('back_circuit_index');
