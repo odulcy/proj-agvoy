@@ -9,6 +9,7 @@
         </title>
         {% block stylesheets %}
         {% endblock %}
+      <link rel="stylesheet" href="/css/bootstrap.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -35,41 +36,29 @@
       </div>  
     </nav>
     {% endblock %}
-      
+
       <div class="container">
         {% block body %}
           {% block main %}
-          {% endblock %} 
+          {% endblock %}
         {% endblock %}
       </div>
 
       {% block footer %}
-      <div class="jumbotron" style="margin-bottom:0">
+      <div class="jumbotrongt">
         <div class="row">
           <div class="col text-center"><a
-               href="https://github.com/odulcy/proj-agvoy">Retrouvez-nous sur
+               href="https://github.com/odulcy/proj-agvoy"> > Retrouvez-nous sur
                GitHub</a></div>
-          <div class="col text-center">Copyright Nathanaël DENIS & Olivier DULCY</div>
-          <div class="col text-center">Team GeorgiaTech</div>
+          <div class="col text-center" style="color : #f4c842">Copyright Nathanaël DENIS & Olivier DULCY</div>
+          <div class="col text-center" style="color : #f4c842">Team GeorgiaTech</div>
         </div>
       </div>
       {% endblock %}
     </body>
     {% block javascripts %}
-    <script src="/js/sweetalert2.all.min.js"></script>
-    {% for label, messages in app.flashes %}
-      <script>
-        $(document).ready(function(){
-        {% for message in messages %}
-        swal({
-          type: '{{ label }}',
-          title: '{{ message[0] }}',
-          text: '{{ message[1] }}',
-        })
-        });
-        {% endfor %}
-      </script>
-    {% endfor %}
+    <script src="/js/bootstrap.min.js">
+    </script>
     {% endblock %} {# javascripts #}
     {% block custompage_script %}
     {% endblock %} {# custompage_scripts #}
