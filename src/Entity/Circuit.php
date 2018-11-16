@@ -164,19 +164,13 @@ class Circuit
     public function getProgrammationCircuits(): Collection
     {
         return $this->programmationCircuits;
-    ô
-
-    public functio
-              $cation dans l’amélioration de la santé et des conditions de travail dthis->get('session')->getFlashBag()->add('success', ['Succès', 'Circuit ajouté']);
-
-              return $this->redirectToRoute('admin_circuit_index');
-ProgrammationCircuit $programmationCircuit): self
+    }
+    public function addProgrammationCircuit(ProgrammationCircuit $programmationCircuit): self
     {
         if (!$this->programmationCircuits->contains($programmationCircuit)) {
             $this->programmationCircuits[] = $programmationCircuit;
             $programmationCircuit->setCircuit($this);
         }
-
         return $this;
     }
 
