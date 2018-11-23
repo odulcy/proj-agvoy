@@ -4884,28 +4884,11 @@ input[type="button"].btn-block {
   border-radius: 0.3rem;
 }
 
-.jumbotrongt{
-  padding: 2rem 2rem;
-  background-color: #0e2f66;
-  border-radius: 0.3rem;
-  background-image: url("/assets/bande.png");
-  background-size: cover;
-
-}
-
 @media (min-width: 576px) {
   .jumbotron {
     padding: 4rem 2rem;
   }
 }
-@media (max-width: 800
-  px){
-  .jumbotrongt{
-    background-image: none;
-    background-color: #000000;
-  }
-}
-
 
 .jumbotron-fluid {
   padding-right: 0;
@@ -9043,40 +9026,6 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
-}
-
-@font-face {
-  font-family: "Milestone";
-  src : url('Milestone.otf');
-}
-
-@font-face {
-  font-family: "Jukebox";
-  src: url("jk.otf");
-}
-.gtTitle{
-   font-family: Milestone ;
-   font-size: 4.2em;
-}
-.subgtTitle{
-  font-family: Milestone;
-  font-style: italic;
-  font-size: 2em;
-}
-
-.circuitTitle{
-  font-family: Milestone;
-  font-size: 3.5em;
-}
-
-.interText{
-  font-family: Milestone;
-  font-size: 3em;
-}
-
-.endText{
-  font-family: Jukebox;
-  font-size: 7em;
 }
 
 /*# sourceMappingURL=bootstrap.css.map */

@@ -1,0 +1,55 @@
+@font-face {
+  font-family: "Milestone";
+  src : url('Milestone.otf');
+}
+
+@font-face {
+  font-family: "Jukebox";
+  src: url("jk.otf");
+}
+.gtTitle{
+   font-family: Milestone ;
+   font-size: 4.2em;
+}
+.subgtTitle{
+  font-family: Milestone;
+  font-style: italic;
+  font-size: 2em;
+}
+
+.circuitTitle{
+  font-family: Milestone;
+  font-size: 3.5em;
+}
+
+.interText{
+  font-family: Milestone;
+  font-size: 3em;
+}
+
+.endText{
+  font-family: Jukebox;
+  font-size: 7em;
+}
+
+.enter{
+  font-size: 6em;
+  font-family: Milestone;
+  color: black;
+}
+
+.jumbotrongt{
+  padding: 2rem 2rem;
+  background-color: #0e2f66;
+  border-radius: 0.3rem;
+  background-image: url("/assets/bande.png");
+  background-size: cover;
+
+}
+
+@media (max-width: 800px){
+  .jumbotrongt{
+    background-image: none;
+    background-color: #000000;
+  }
+}
