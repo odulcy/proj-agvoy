@@ -38,14 +38,6 @@ class MenuBuilder
                 'class' => 'nav-link',
                 'icon' => 'fa fa-list'
             ));
-        // ... add more children
-        //$menu->addChild('Accueil', array('route' => 'home'))
-        //    ->setAttributes(array('class' => 'nav-link'));
-        //$menu->addChild('Actives Todos', array('route' => 'todo_active_list'))
-        //    ->setAttributes(array('class' => 'nav-link'));
-        //
-        //$menu->addChild('Pastes', array('route' => 'paste_index'))
-        //    ->setAttributes(array('class' => 'nav-link'));
 
         return $menu;
     }
@@ -60,15 +52,26 @@ class MenuBuilder
         {
             // Get username of the current logged in user
             $username = $this->container->get('security.token_storage')->getToken()->getUser()->getUsername();
-            $label = 'Hi '. $username;
+            $label = 'Bonjour '. $username;
+            $menu->addChild('Déconnexion', array('route' => 'fos_user_security_logout'))
+                ->setAttributes(array(
+                    'class' => 'nav-link',
+                    'icon' => 'fa fa-list'
+                ));
         }
         else 
        {
-            $label = 'Hi visitor'; 
+            $label = 'Bonjour, visiteur'; 
+            $menu->addChild('Connexion', array('route' => 'fos_user_security_login'))
+                ->setAttributes(array(
+                    'class' => 'nav-link',
+                    'icon' => 'fa fa-list'
+                ));
         }
         $menu->addChild('User', array('label' => $label))
         ->setAttribute('dropdown', true)
         ->setAttribute('icon', 'fa fa-user');
+
         
         return $menu;
     }
