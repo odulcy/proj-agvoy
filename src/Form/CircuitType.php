@@ -6,6 +6,7 @@ use App\Entity\Circuit;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class CircuitType extends AbstractType
 {
@@ -16,7 +17,7 @@ class CircuitType extends AbstractType
             ->add('paysDepart')
             ->add('villeArrivee')
             ->add('villeDepart')
-            ->add('dureeCircuit')
+            ->add('dureeCircuit', IntegerType::class)
         ;
     }
 
