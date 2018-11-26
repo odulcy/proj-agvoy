@@ -25,7 +25,10 @@
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-expanded="false">
         <span class="navbar-toggler-icon"></span>
       </button>
-    {{ knp_menu_render('main', {'currentClass': 'active'}) }}
+      <div class="navbar navbar-collapse collapse  ml-auto" id="collapsibleNavbar">
+      {{ knp_menu_render('main', {'currentClass': 'active'}) }}
+      {{ knp_menu_render('user', {'currentClass': 'active'}) }}
+      </div>
     </nav>
     {% endblock %}
 
