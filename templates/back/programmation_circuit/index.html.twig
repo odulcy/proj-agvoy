@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProgrammationCircuit index{% endblock %}
+
+{% block main %}
+    <h1>Administration : liste des circuits programmés</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numéro</th>
+                <th>Circuit</th>
+                <th>Date de départ</th>
+                <th>Nombre de Personnes</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for programmation_circuit in programmation_circuits %}
+            <tr>
+                <td>{{ programmation_circuit.id }}</td>
+                <td>{{ programmation_circuit.circuit.villeDepart }} - {{ programmation_circuit.circuit.villeArrivee }}</td>
+                <td>{{ programmation_circuit.dateDepart ? programmation_circuit.dateDepart|date('d/m/Y') : '' }}</td>
+                <td>{{ programmation_circuit.nombrePersonnes }}</td>
+                <td>{{ programmation_circuit.prix }}</td>
+                <td>
+                    <a href="{{ path('programmation_circuit_show', {'id': programmation_circuit.id}) }}">Voir</a>
+                    <a href="{{ path('programmation_circuit_edit', {'id': programmation_circuit.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('programmation_circuit_new') }}">Create new</a>
+{% endblock %}

@@ -5,8 +5,13 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EtapeRepository")
+ * @Vich\Uploadable
  */
 class Etape
 {
@@ -37,6 +42,27 @@ class Etape
      * @ORM\JoinColumn(nullable=false)
      */
     private $circuit;
+
+    /**
+     * @Vich\UploadableField(mapping="etape_image", fileNameProperty="imageName")
+     * @Assert\Image(
+     *      mimeTypes="image/jpeg")
+     *
+     * @var File|null
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @var string|null
+     */
+    private $imageName;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated_at;
 
     public function getId(): ?int
     {
@@ -90,4 +116,45 @@ class Etape
 
         return $this;
     }
+
+    public function setImageFile(?File $imageFile): self
+    {
+      $this->imageFile = $imageFile;
+      if($this->imageFile instanceof UploadedFile){
+        $this->updated_at = new \DateTime('now');
+      }
+
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+
+    public function setImageName(?string $imageName): self
+    {
+        $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
 }

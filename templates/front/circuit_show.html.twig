@@ -12,6 +12,9 @@ Erreur
 {% block main %}
 {% if circuit %}
 <h1 class="circuitTitle">Circuit n°{{circuit.id}}</h1>
+{% if circuit.imageName %}
+  <img src="{{ vich_uploader_asset(circuit, 'imageFile')}}" class="img-fluid">
+{% endif %}
 <table class="table">
     <thead>
         <tr>

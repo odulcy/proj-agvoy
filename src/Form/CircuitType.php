@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class CircuitType extends AbstractType
 {
@@ -18,6 +19,10 @@ class CircuitType extends AbstractType
             ->add('villeArrivee')
             ->add('villeDepart')
             ->add('dureeCircuit', IntegerType::class)
+            ->add('imageFile', FileType::class, [
+              'required' => 'false'
+            ])
+
         ;
     }
 

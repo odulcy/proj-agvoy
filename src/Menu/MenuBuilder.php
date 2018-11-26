@@ -105,6 +105,10 @@ class MenuBuilder
             ->setLinkAttributes(array(
                 'class' => 'dropdown-item'
             ));
+        $menu['Administration']->addChild('Programmer un circuit', array('route' => 'programmation_circuit_index'))
+            ->setLinkAttributes(array(
+                'class' => 'dropdown-item'
+            ));
       } 
         $menu->addChild('User', array('label' => $label))
           ->setAttributes(array(
