@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class EtapeType extends AbstractType
 {
@@ -18,6 +19,9 @@ class EtapeType extends AbstractType
             ->add('villeEtape', TextType::class)
             ->add('nombreJours', IntegerType::class)
             ->add('circuit')
+            ->add('imageFile', FileType::class, [
+              'required' => 'false'
+            ])
         ;
     }
 

@@ -4,7 +4,11 @@
 
 {% block main %}
     <h1>Etape</h1>
-
+    {% if etape.imageName %}
+      <img class='img-fluid' src="{{ vich_uploader_asset(etape, 'imageFile')}}">
+    {% else %}
+      <p>Pas d'image</p>
+    {% endif %}
     <table class="table">
         <tbody>
             <tr>

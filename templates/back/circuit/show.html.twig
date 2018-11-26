@@ -4,6 +4,11 @@
 
 {% block main %}
     <h1>Circuit</h1>
+    {% if circuit.imageName %}
+      <img class='img-fluid' src="{{ vich_uploader_asset(circuit, 'imageFile')}}">
+    {% else %}
+      <p>Pas d'image</p>
+    {% endif %}
 
     <table class="table">
         <tbody>
