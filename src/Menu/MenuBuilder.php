@@ -98,11 +98,11 @@ class MenuBuilder
         ));
 
         $menu['Administration']->addChild('Circuit', array('route' => 'admin_circuit_index'))
-            ->setAttributes(array(
+            ->setLinkAttributes(array(
                 'class' => 'dropdown-item'
             ));
         $menu['Administration']->addChild('Etape', array('route' => 'admin_etape_index'))
-            ->setAttributes(array(
+            ->setLinkAttributes(array(
                 'class' => 'dropdown-item'
             ));
       } 
