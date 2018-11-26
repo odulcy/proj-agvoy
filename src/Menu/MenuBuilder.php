@@ -109,6 +109,10 @@ class MenuBuilder
             ->setLinkAttributes(array(
                 'class' => 'dropdown-item'
             ));
+        $menu['Administration']->addChild('Modifier les catégories des circuits', array('route' => 'circuit_category_index'))
+            ->setLinkAttributes(array(
+                'class' => 'dropdown-item'
+            ));
       } 
         $menu->addChild('User', array('label' => $label))
           ->setAttributes(array(

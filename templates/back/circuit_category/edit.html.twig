@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CircuitCategory{% endblock %}
+
+{% block main %}
+    <h1>Edit CircuitCategory</h1>
+
+    {{ include('circuit_category/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('circuit_category_index') }}">back to list</a>
+
+    {{ include('back/circuit_category/_delete_form.html.twig') }}
+{% endblock %}

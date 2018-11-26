@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CircuitCategory{% endblock %}
+
+{% block main %}
+    <h1>Create new CircuitCategory</h1>
+
+    {{ include('back/circuit_category/_form.html.twig') }}
+
+    <a href="{{ path('circuit_category_index') }}">back to list</a>
+{% endblock %}
