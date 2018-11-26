@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\ProgrammationCircuit;
+use App\Entity\CircuitCategory;
 
 class FrontofficeHomeController extends AbstractController
 {
@@ -16,9 +17,11 @@ class FrontofficeHomeController extends AbstractController
     {
       $em = $this->getDoctrine()->getManager();
       $programmationCircuits = $em->getRepository(ProgrammationCircuit::class)->findAll();
+      $circuitCategories = $em->getRepository(CircuitCategory::class)->findAll();
       dump($programmationCircuits);
         return $this->render('front/home.html.twig', [
-        'programmationCircuits' => $programmationCircuits, 
+          'programmationCircuits' => $programmationCircuits,
+          'circuitCategories' => $circuitCategories
         ]);
     }
     /**

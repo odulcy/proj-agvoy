@@ -26,10 +26,10 @@
                 <td>{{ circuit.villeDepart }}</td>
                 <td>{{ circuit.dureeCircuit }}</td>
                 <td>
-                    <a href="{{ path('admin_circuit_show', {'id': circuit.id})
-                      }}">Afficher</a>
-                    <a href="{{ path('admin_circuit_edit', {'id': circuit.id})
-                      }}">Modifier</a>
+                    <a class="btn btn-info" href="{{ path('admin_circuit_show', {'id': circuit.id})
+                      }}"><i class="far fa-eye"></i> Afficher</a>
+                    <a class="btn btn-warning" href="{{ path('admin_circuit_edit', {'id': circuit.id})
+                      }}"><i class="far fa-edit"></i> Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -40,5 +40,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('admin_circuit_new') }}">Créer un nouveau circuit</a>
+    <a class="btn btn-success my-4" href="{{ path('admin_circuit_new') }}"><i class="fas fa-plus-circle"></i> Créer un nouveau circuit</a>
 {% endblock %}

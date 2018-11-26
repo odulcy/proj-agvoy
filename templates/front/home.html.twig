@@ -5,11 +5,13 @@
         <div class="col-lg-3">
 
           <h1 class="my-4">Agence de Voyage GeorgiaTech</h1>
+          {% if circuitCategories %}
           <div class="list-group">
-            <a href="#" class="list-group-item">Category 1</a>
-            <a href="#" class="list-group-item">Category 2</a>
-            <a href="#" class="list-group-item">Category 3</a>
+          {% for category in circuitCategories %}
+            <a href="#" class="list-group-item">{{ category.name }}</a>
+          {% endfor %}
           </div>
+          {% endif %}
 
         </div>
         <!-- /.col-lg-3 -->

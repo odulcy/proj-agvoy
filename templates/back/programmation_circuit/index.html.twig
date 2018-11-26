@@ -25,17 +25,17 @@
                 <td>{{ programmation_circuit.nombrePersonnes }}</td>
                 <td>{{ programmation_circuit.prix }}</td>
                 <td>
-                    <a href="{{ path('programmation_circuit_show', {'id': programmation_circuit.id}) }}">Voir</a>
-                    <a href="{{ path('programmation_circuit_edit', {'id': programmation_circuit.id}) }}">Modifier</a>
+                    <a class="btn btn-info" href="{{ path('programmation_circuit_show', {'id': programmation_circuit.id}) }}"><i class="far fa-eye"></i> Voir</a>
+                    <a class="btn btn-warning" href="{{ path('programmation_circuit_edit', {'id': programmation_circuit.id}) }}"><i class="far fa-edit"></i> Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun résultat trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('programmation_circuit_new') }}">Create new</a>
+    <a class="btn btn-success my-4" href="{{ path('programmation_circuit_new') }}"><i class="fas fa-plus-circle"></i> Programmer un circuit</a>
 {% endblock %}

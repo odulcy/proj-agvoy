@@ -21,8 +21,8 @@
                 <td>{{ circuit_category.name }}</td>
                 <td>{{ circuit_category.description }}</td>
                 <td>
-                    <a href="{{ path('circuit_category_show', {'id': circuit_category.id}) }}">show</a>
-                    <a href="{{ path('circuit_category_edit', {'id': circuit_category.id}) }}">edit</a>
+                    <a class="btn btn-info" href="{{ path('circuit_category_show', {'id': circuit_category.id}) }}"><i class="far fa-eye"></i> Voir</a>
+                    <a class="btn btn-warning" href="{{ path('circuit_category_edit', {'id': circuit_category.id}) }}"><i class="far fa-edit"></i> Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('circuit_category_new') }}">Create new</a>
+    <a class="btn btn-success my-4" href="{{ path('circuit_category_new') }}"><i class="fas fa-plus-circle"></i> Créer une nouvelle catégorie</a>
 {% endblock %}
