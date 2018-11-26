@@ -76,6 +76,36 @@ class MenuBuilder
                 ));
             $menu['Connexion']->setLinkAttribute('class', 'nav-link');
         }
+      if($this->container->get('security.authorization_checker')->isGranted(array('ROLE_ADMIN'))) 
+      {
+        $menu->addChild('Administration', array('uri' => '#')) 
+          ->setAttributes(array(
+            'class' => 'nav-item dropdown',
+            'aria-labelledby' => "navbarDropdown"));
+
+        $menu['Administration']->setLinkAttributes(array(
+          'class' => 'nav-link dropdown-toggle',
+          'id' => 'navbarDropdown',
+          'role' => 'button',
+          'data-toggle' => 'dropdown',
+          'aria-haspopup' => 'true',
+          'aria-expanded' => "false"
+        ));
+
+        $menu['Administration']->setChildrenAttributes(array(
+          'class' => 'dropdown-menu',
+          'aria-labelledby' => 'navbarDropdown'
+        ));
+
+        $menu['Administration']->addChild('Circuit', array('route' => 'admin_circuit_index'))
+            ->setAttributes(array(
+                'class' => 'dropdown-item'
+            ));
+        $menu['Administration']->addChild('Etape', array('route' => 'admin_etape_index'))
+            ->setAttributes(array(
+                'class' => 'dropdown-item'
+            ));
+      } 
         $menu->addChild('User', array('label' => $label))
           ->setAttributes(array(
                 'class' => 'nav-link disabled'
