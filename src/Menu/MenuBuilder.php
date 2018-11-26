@@ -31,7 +31,8 @@ class MenuBuilder
     public function createMainMenu(array $options)
     {
         $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'nav navbar-nav');
+        $menu->setChildrenAttribute('class', 'navbar-collapse collapse nav navbar-nav  ml-auto');
+        $menu->setChildrenAttribute('id', 'collapsibleNavbar');
         
         $menu->addChild('Accueil', array('route' => 'home'))
             ->setAttributes(array(
@@ -46,14 +47,8 @@ class MenuBuilder
                 'icon' => 'fa fa-list'
             ));
         $menu['Liste des circuits']->setLinkAttribute('class', 'nav-link');
-        return $menu;
-    }
-    
-    public function createUserMenu(array $options)
-    {
-        $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'navbar-collapse collapse nav navbar-nav  ml-auto');
-        $menu->setChildrenAttribute('id', 'collapsibleNavbar');
+        
+        
         
         //if($this->container->get('security.context')->isGranted(array('ROLE_ADMIN', 'ROLE_USER'))) {} // Check if the visitor has any authenticated roles
         if($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY'))
