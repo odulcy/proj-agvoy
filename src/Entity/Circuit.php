@@ -121,12 +121,12 @@ class Circuit
 
     public function getVilleArrivee(): ?string
     {
-        $etapes = $this -> $etapes;
+        $etapes = $this->etapes;
         $max = 1;
         foreach( $etapes as $etape){
-          if($etape -> getNumeroEtape() > $max){
-            $max = $etape -> getNumeroEtape();
-            $this -> $villeArrivee = $etape -> getVilleEtape();
+          if($etape->getNumeroEtape() > $max){
+            $max = $etape->getNumeroEtape();
+            $this->villeArrivee = $etape->getVilleEtape();
           }
         }
 
@@ -142,10 +142,10 @@ class Circuit
 
     public function getVilleDepart(): ?string
     {
-        $etapes = $this -> $etapes;
+        $etapes = $this->etapes;
         foreach ($etapes as $etape) {
           if(($etape->getNumeroEtape())==1){
-            $this -> $villeDepart = $etape->getVilleEtape();
+            $this->villeDepart = $etape->getVilleEtape();
           }
         }
         return $this->villeDepart;

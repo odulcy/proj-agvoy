@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block main %}
+    <h1>Administration : liste des utilisateurs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Enabled</th>
+                <th>LastLogin</th>
+                <th>Roles</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.enabled ? 'Yes' : 'No' }}</td>
+                <td>{{ user.lastLogin ? user.lastLogin|date('d-m-Y') : '' }}</td>
+                <td>{{ user.roles ? user.roles|join(', ') : '' }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('user_show', {'id': user.id}) }}"><i class="far fa-eye"></i> Afficher</a>
+                    <a class="btn btn-warning" href="{{ path('user_edit', {'id': user.id}) }}"><i class="far fa-edit"></i> Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-success my-4" href="{{ path('user_new') }}"><i class="fas fa-plus-circle"></i> Créer un utilisateur</a>
+{% endblock %}

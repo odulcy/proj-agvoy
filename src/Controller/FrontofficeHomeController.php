@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use App\Entity\ProgrammationCircuit;
 use App\Entity\CircuitCategory;
@@ -19,10 +20,12 @@ class FrontofficeHomeController extends AbstractController
       $em = $this->getDoctrine()->getManager();
       $programmationCircuits = $em->getRepository(ProgrammationCircuit::class)->findAll();
       $circuitCategories = $em->getRepository(CircuitCategory::class)->findAll();
+      $likes = $this->get('session')->get('likes');
       dump($programmationCircuits);
         return $this->render('front/home.html.twig', [
           'programmationCircuits' => $programmationCircuits,
-          'circuitCategories' => $circuitCategories
+          'circuitCategories' => $circuitCategories,
+          'likes' => $likes
         ]);
     }
     /**
@@ -36,7 +39,6 @@ class FrontofficeHomeController extends AbstractController
         $progCircuit = $em->getRepository(ProgrammationCircuit::class)->find($id);
         if($progCircuit){
           $circuit=$progCircuit->getCircuit();
-          dump($circuit);
           return $this->render('front/circuit_show.html.twig', [
           'circuit' => $circuit,
           'programmation' => $progCircuit
@@ -46,10 +48,12 @@ class FrontofficeHomeController extends AbstractController
           throw $this->createNotFoundException('Impossible de trouver le circuit demandé');
         }
     }
-    /*
+    /**
      * Manage likes
+     *
+     * @Route("/like/{id}", name="front_set_like")
      */
-    public function likes($id)
+    public function like($id)
     {
         $likes = $this->get('session')->get('likes');
         if(! $likes){
@@ -67,5 +71,26 @@ class FrontofficeHomeController extends AbstractController
         }
         $this->get('session')->set('likes', $likes);
         dump($likes);
+        return $this->redirectToRoute('frontoffice_home');
+    }
+    /**
+     * Finds and displays a circuit entity.
+     *
+     * @Route("/my-likes", name="front_likes_show")
+     */
+    public function myLikes()
+    {
+        $likes = $this->get('session')->get('likes');
+        if(! $likes){
+          $likes=array();
+        }
+        $em = $this->getDoctrine()->getManager();
+        $programmationCircuits=array();
+        foreach ($likes as $id) {
+          $programmationCircuits[] = $em->getRepository(ProgrammationCircuit::class)->find($id);
+        }
+        return $this->render('front/mylikes.html.twig', [
+        'programmationCircuits' => $programmationCircuits
+      ]);
     }
 }

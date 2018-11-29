@@ -49,6 +49,12 @@ class MenuBuilder
             ));
         $menu['Liste des circuits']->setLinkAttribute('class', 'nav-link');
 
+        $menu->addChild('Mes circuits préférés', array('route' => 'front_likes_show'))
+            ->setAttributes(array(
+                'class' => 'nav-item',
+                'icon' => 'fa fa-list'
+            ));
+        $menu['Mes circuits préférés']->setLinkAttribute('class', 'nav-link');
         return $menu;
     }
 
@@ -113,6 +119,12 @@ class MenuBuilder
             ->setLinkAttributes(array(
                 'class' => 'dropdown-item'
             ));
+        if($this->container->get('security.authorization_checker')->isGranted(array('ROLE_SUPER_ADMIN'))){
+          $menu['Administration']->addChild('Modifier les comptes utilisateurs', array('route' => 'user_index'))
+              ->setLinkAttributes(array(
+                  'class' => 'dropdown-item'
+              ));
+        }
       }
         $menu->addChild('User', array('label' => $label))
           ->setAttributes(array(
