@@ -50,11 +50,11 @@
           {% for progCircuit in programmationCircuits %}
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <a href="{{ path('front_circuit_show', {id:progCircuit.circuit.id}) }}">
+                <a href="{{ path('front_circuit_show', {id:progCircuit.id}) }}">
                   <img class="card-img-top" src="{{ vich_uploader_asset(progCircuit.circuit, 'imageFile')|default('http://placehold.it/700x400') }}" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="{{ path('front_circuit_show', {id:progCircuit.circuit.id}) }}">{{ progCircuit.circuit.paysDepart }}</a>
+                    <a href="{{ path('front_circuit_show', {id:progCircuit.id}) }}">{{ progCircuit.circuit.paysDepart }}</a>
                   </h4>
                   <h5>{{ progCircuit.prix }} €</h5>
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
