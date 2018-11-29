@@ -45,7 +45,7 @@ class Circuit
      * @ORM\Column(type="string", length=30, nullable=true)
      */
     private $villeDepart;
-  
+
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
@@ -147,8 +147,13 @@ class Circuit
         return $this->dureeCircuit;
     }
 
-    public function setDureeCircuit(?int $dureeCircuit): self
+    public function setDureeCircuit(): self
     {
+        $etapes = $this -> $etapes;
+        foreach ($etapes as $etape) {
+          $dureeCircuit+= $etape.getNombreJours();
+        }
+        
         $this->dureeCircuit = $dureeCircuit;
 
         return $this;
@@ -253,7 +258,7 @@ class Circuit
 
         return $this;
     }
-  
+
     public function __toString() {
       return (string) $this->getId();
     }
