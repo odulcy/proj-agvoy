@@ -20,7 +20,10 @@
                     <a href="{{ path('front_circuit_show', {id:progCircuit.id}) }}">{{ progCircuit.circuit.paysDepart }}</a>
                   </h4>
                   <h5>{{ progCircuit.prix }} €</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                  <p class="card-text">Nombre de places : {{ progCircuit.nombrePersonnes }}</p>
+                  <p class="card-text">Départ : {{ progCircuit.dateDepart ? progCircuit.dateDepart|date('d/m/Y') : '' }}</p>
+                  <p class="card-text">Excursion de {{ progCircuit.circuit.dureeCircuit }} jours</p>
+                  <p class="card-text">{{ progCircuit.circuit.description }}</p>
                 </div>
               </div>
             </div>

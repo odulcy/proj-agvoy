@@ -17,6 +17,7 @@ class EtapeType extends AbstractType
         $builder
             ->add('numeroEtape', IntegerType::class)
             ->add('villeEtape', TextType::class)
+            ->add('description', TextType::class)
             ->add('nombreJours', IntegerType::class)
             ->add('circuit')
             ->add('imageFile', FileType::class, [
