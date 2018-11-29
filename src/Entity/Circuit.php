@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+use App\Entity\Etape;
 #Validation
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -144,19 +145,18 @@ class Circuit
 
     public function getDureeCircuit(): ?int
     {
+        $etapes = $this->getEtapes();
+        $duree = 0;
+        foreach ($etapes as $etape) {
+          $duree+=$etape->getNombreJours();
+        }
+        $this->dureeCircuit = $duree;
         return $this->dureeCircuit;
     }
-
-    public function setDureeCircuit(): self
+    
+    public function setDureeCircuit(?int $dureeCircuit): self
     {
-        $dureeCircuit = 0;
-        $etapes = $this -> $etapes;
-        foreach ($etapes as $etape) {
-          $dureeCircuit+= $etape.getNombreJours();
-        }
-
         $this->dureeCircuit = $dureeCircuit;
-
         return $this;
     }
 

@@ -18,9 +18,8 @@ class CircuitType extends AbstractType
             ->add('paysDepart')
             ->add('villeArrivee')
             ->add('villeDepart')
-            ->add('dureeCircuit', IntegerType::class)
             ->add('imageFile', FileType::class, [
-              'required' => 'false'
+              'required' => false
             ])
 
         ;

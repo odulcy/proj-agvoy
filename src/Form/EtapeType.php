@@ -15,12 +15,11 @@ class EtapeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numeroEtape', IntegerType::class)
             ->add('villeEtape', TextType::class)
             ->add('nombreJours', IntegerType::class)
             ->add('circuit')
             ->add('imageFile', FileType::class, [
-              'required' => 'false'
+              'required' => false
             ])
         ;
     }
