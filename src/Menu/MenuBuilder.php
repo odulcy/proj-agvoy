@@ -16,7 +16,7 @@ class MenuBuilder
 {
     private $factory;
     private $container;
-    
+
     /**
      * @param FactoryInterface $factory
      *
@@ -27,14 +27,14 @@ class MenuBuilder
         $this->factory = $factory;
         $this->container = $container;
     }
-    
+
     public function createMainMenu(array $options)
     {
       $menu = $this->factory->createItem('root');
       $menu->setChildrenAttribute('class', 'nav navbar-nav');
         //$menu->setChildrenAttribute('class', 'navbar-collapse collapse nav navbar-nav  ml-auto');
         //$menu->setChildrenAttribute('id', 'collapsibleNavbar');
-        
+
         $menu->addChild('Accueil', array('route' => 'home'))
             ->setAttributes(array(
                 'class' => 'nav-item',
@@ -48,10 +48,10 @@ class MenuBuilder
                 'icon' => 'fa fa-list'
             ));
         $menu['Liste des circuits']->setLinkAttribute('class', 'nav-link');
-        
+
         return $menu;
     }
-    
+
     public function createUserMenu(array $options){
       $menu = $this->factory->createItem('root');
       $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
@@ -67,18 +67,18 @@ class MenuBuilder
                 ));
             $menu['Déconnexion']->setLinkAttribute('class', 'nav-link');
         }
-        else 
+        else
        {
-            $label = 'Bonjour, visiteur'; 
+            $label = 'Bonjour, visiteur';
             $menu->addChild('Connexion', array('route' => 'fos_user_security_login'))
                 ->setAttributes(array(
                     'class' => 'nav-item disabled'
                 ));
             $menu['Connexion']->setLinkAttribute('class', 'nav-link');
         }
-      if($this->container->get('security.authorization_checker')->isGranted(array('ROLE_ADMIN'))) 
+      if($this->container->get('security.authorization_checker')->isGranted(array('ROLE_ADMIN')))
       {
-        $menu->addChild('Administration', array('uri' => '#')) 
+        $menu->addChild('Administration', array('uri' => '#'))
           ->setAttributes(array(
             'class' => 'nav-item dropdown',
             'aria-labelledby' => "navbarDropdown"));
@@ -113,7 +113,7 @@ class MenuBuilder
             ->setLinkAttributes(array(
                 'class' => 'dropdown-item'
             ));
-      } 
+      }
         $menu->addChild('User', array('label' => $label))
           ->setAttributes(array(
                 'class' => 'nav-link disabled'
