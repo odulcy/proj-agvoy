@@ -149,11 +149,12 @@ class Circuit
 
     public function setDureeCircuit(): self
     {
+        $dureeCircuit = 0;
         $etapes = $this -> $etapes;
         foreach ($etapes as $etape) {
           $dureeCircuit+= $etape.getNombreJours();
         }
-        
+
         $this->dureeCircuit = $dureeCircuit;
 
         return $this;
