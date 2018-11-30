@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class CircuitType extends AbstractType
 {
@@ -24,8 +25,11 @@ class CircuitType extends AbstractType
               'required' => false
             ])
             ->add('category', CollectionType::class, array(
-              'entry_type' => CircuitCategoryType::class,
-              'entry_options' => array('label' => false),
+              'entry_type' => ChoiceType::class,
+              'entry_options' => array(
+                'label' => false,
+                'choices' => $options['categories'],
+              ),
               'allow_add' => true,
               'allow_delete' => true,
               'by_reference' => false,
@@ -37,6 +41,7 @@ class CircuitType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Circuit::class,
+            'categories' => null
         ]);
     }
 }

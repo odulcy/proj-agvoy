@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Circuit;
+use App\Entity\CircuitCategory;
+
 use App\Form\CircuitType;
 use App\Repository\CircuitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,8 +30,11 @@ class BackofficeCircuitController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $em = $this->getDoctrine()->getManager();
+        $categories = $em->getRepository(CircuitCategory::class)->findAll();
         $circuit = new Circuit();
-        $form = $this->createForm(CircuitType::class, $circuit);
+        $form = $this->createForm(CircuitType::class, $circuit,
+                        array('categories' => $categories));
         $form->handleRequest($request);
 
         if($request->getMethod() === 'POST'){
@@ -43,7 +48,7 @@ class BackofficeCircuitController extends AbstractController
           }else{
               $this->get('session')->getFlashBag()->add('error', ['Erreur', 'Champs invalides']);
 
-              return $this->redirectToRoute('admin_circuit_index'); 
+              return $this->redirectToRoute('admin_circuit_index');
           }
         }
         else{
@@ -67,7 +72,10 @@ class BackofficeCircuitController extends AbstractController
      */
     public function edit(Request $request, Circuit $circuit): Response
     {
-        $form = $this->createForm(CircuitType::class, $circuit);
+        $em = $this->getDoctrine()->getManager();
+        $categories = $em->getRepository(CircuitCategory::class)->findAll();
+        $form = $this->createForm(CircuitType::class, $circuit,
+        array('categories' => $categories));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
