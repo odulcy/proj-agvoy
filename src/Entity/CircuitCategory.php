@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +27,16 @@ class CircuitCategory
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Circuit", mappedBy="category")
+     */
+    private $circuits;
+
+    public function __construct()
+    {
+        $this->circuits = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -51,6 +63,34 @@ class CircuitCategory
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Circuit[]
+     */
+    public function getCircuits(): Collection
+    {
+        return $this->circuits;
+    }
+
+    public function addCircuit(Circuit $circuit): self
+    {
+        if (!$this->circuits->contains($circuit)) {
+            $this->circuits[] = $circuit;
+            $circuit->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCircuit(Circuit $circuit): self
+    {
+        if ($this->circuits->contains($circuit)) {
+            $this->circuits->removeElement($circuit);
+            $circuit->removeCategory($this);
+        }
 
         return $this;
     }

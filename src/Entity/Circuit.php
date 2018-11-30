@@ -83,11 +83,17 @@ class Circuit
      */
     private $updated_at;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\CircuitCategory", inversedBy="circuits")
+     */
+    private $category;
+
 
     public function __construct()
     {
         $this->etapes = new ArrayCollection();
         $this->programmationCircuits = new ArrayCollection();
+        $this->category = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -277,5 +283,31 @@ class Circuit
 
     public function __toString() {
       return (string) $this->getId();
+    }
+
+    /**
+     * @return Collection|CircuitCategory[]
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(CircuitCategory $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(CircuitCategory $category): self
+    {
+        if ($this->category->contains($category)) {
+            $this->category->removeElement($category);
+        }
+
+        return $this;
     }
 }

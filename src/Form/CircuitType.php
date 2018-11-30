@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class CircuitType extends AbstractType
 {
@@ -21,6 +22,11 @@ class CircuitType extends AbstractType
             ->add('imageFile', FileType::class, [
               'required' => false
             ])
+            ->add('category', CollectionType::class, array(
+              'entry_type' => CircuitCategoryType::class,
+              'entry_options' => array('label' => false),
+              'allow_add' => true,
+            ))
 
         ;
     }

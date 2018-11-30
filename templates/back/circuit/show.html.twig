@@ -36,6 +36,10 @@
                 <th>DureeCircuit</th>
                 <td>{{ circuit.dureeCircuit }}</td>
             </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{% for category in circuit.category %} {{ category }} {% endfor %}</td>
+            </tr>
         </tbody>
     </table>
 
