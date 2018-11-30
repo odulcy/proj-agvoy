@@ -74,6 +74,29 @@
 .pub{
   width: 40em;
   height: 40em;
-  padding: 40px;
+  padding: 30px;
 
+}
+
+#discount{
+  font-size: 4.5em;
+  color: black;
+  text-decoration:underline;
+  font-family: Milestone;
+
+}
+
+#discount:hover{
+  color:blue;
+
+}
+
+#resize{
+  font-size: 0.8em;
+}
+
+#actualites{
+  border : 10px black solid;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
