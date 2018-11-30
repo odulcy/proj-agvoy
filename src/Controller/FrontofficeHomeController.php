@@ -49,6 +49,31 @@ class FrontofficeHomeController extends AbstractController
         }
     }
     /**
+     * Finds and displays a circuit entity.
+     *
+     * @Route("/category/{id}", name="front_category_show")
+     */
+    public function categoryShow($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $category = $em->getRepository(CircuitCategory::class)->find($id);
+        if($category){
+          $circuit=$category->getCircuits();
+          $progCircuit=array();
+          foreach ($circuit as $c) {
+            $progCircuit = array_merge($progCircuit,$c->getProgrammationCircuits()->toArray());
+          }
+          dump($progCircuit);
+          return $this->render('front/category.html.twig', [
+          'programmationCircuits' => $progCircuit
+        ]);
+        }
+        else{
+          throw $this->createNotFoundException('Impossible de trouver le circuit demandé');
+        }
+    }
+
+    /**
      * Manage likes
      *
      * @Route("/like/{id}", name="front_set_like")

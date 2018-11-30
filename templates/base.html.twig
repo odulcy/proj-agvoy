@@ -62,6 +62,20 @@
     {% block javascripts %}
     <script src="/js/bootstrap.min.js">
     </script>
+    <script src="/js/sweetalert2.all.min.js"></script>
+    {% for label, messages in app.flashes %}
+      <script>
+        $(document).ready(function(){
+        {% for message in messages %}
+        swal({
+          type: '{{ label }}',
+          title: '{{ message[0] }}',
+          text: '{{ message[1] }}',
+        })
+        });
+        {% endfor %}
+      </script>
+    {% endfor %}
     {% endblock %} {# javascripts #}
     {% block custompage_script %}
     {% endblock %} {# custompage_scripts #}

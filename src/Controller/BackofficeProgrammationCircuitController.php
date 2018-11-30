@@ -36,7 +36,7 @@ class BackofficeProgrammationCircuitController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($programmationCircuit);
             $em->flush();
-
+            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Programmation ajoutée']);
             return $this->redirectToRoute('programmation_circuit_index');
         }
 
@@ -65,7 +65,7 @@ class BackofficeProgrammationCircuitController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Programmation modifiée']);
             return $this->redirectToRoute('programmation_circuit_index', ['id' => $programmationCircuit->getId()]);
         }
 
@@ -84,6 +84,7 @@ class BackofficeProgrammationCircuitController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->remove($programmationCircuit);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Programmation supprimée']);
         }
 
         return $this->redirectToRoute('programmation_circuit_index');

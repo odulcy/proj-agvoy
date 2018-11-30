@@ -37,6 +37,7 @@ class BackofficeCircuitCategoryController extends AbstractController
             $em->persist($circuitCategory);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Catégorie ajoutée']);
             return $this->redirectToRoute('circuit_category_index');
         }
 
@@ -64,7 +65,7 @@ class BackofficeCircuitCategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Catégorie modifiée']);
             return $this->redirectToRoute('circuit_category_index', ['id' => $circuitCategory->getId()]);
         }
 
@@ -83,6 +84,7 @@ class BackofficeCircuitCategoryController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->remove($circuitCategory);
             $em->flush();
+            $this->get('session')->getFlashBag()->add('success', ['Succès', 'Catégorie supprimée']);
         }
 
         return $this->redirectToRoute('circuit_category_index');
