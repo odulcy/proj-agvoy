@@ -84,7 +84,7 @@ class Circuit
     private $updated_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\CircuitCategory", inversedBy="circuits")
+     * @ORM\ManyToMany(targetEntity="App\Entity\CircuitCategory", inversedBy="circuits",cascade={"persist"})
      */
     private $category;
 

@@ -38,7 +38,7 @@
             </tr>
             <tr>
                 <th>Categorie</th>
-                <td>{% for category in circuit.category %} {{ category }} {% endfor %}</td>
+                <td>{% for category in circuit.category %} {{ category.name }} {% endfor %}</td>
             </tr>
         </tbody>
     </table>

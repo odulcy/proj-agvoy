@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class CircuitType extends AbstractType
@@ -15,7 +16,7 @@ class CircuitType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
+            ->add('description',TextType::class)
             ->add('paysDepart')
             ->add('villeArrivee')
             ->add('villeDepart')
@@ -26,8 +27,9 @@ class CircuitType extends AbstractType
               'entry_type' => CircuitCategoryType::class,
               'entry_options' => array('label' => false),
               'allow_add' => true,
+              'allow_delete' => true,
+              'by_reference' => false,
             ))
-
         ;
     }
 

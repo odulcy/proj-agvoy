@@ -6,6 +6,7 @@ use App\Entity\CircuitCategory;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class CircuitCategoryType extends AbstractType
 {
@@ -13,7 +14,8 @@ class CircuitCategoryType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')
+            ->add('description', TextType::class,
+            ['required' => false])
         ;
     }
 

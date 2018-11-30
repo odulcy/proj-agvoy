@@ -1,9 +1,14 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.description)}}
+    {{ form_row(form.paysDepart) }}
+    {{ form_row(form.villeArrivee) }}
+    {{ form_row(form.villeDepart) }}
+    {{ form_row(form.imageFile) }}
     <ul class="category" data-prototype="{{ form_widget(form.category.vars.prototype)|e('html_attr') }}">
         {# iterate over each existing tag and render its only field: name #}
-        {% for category in form.category %}
-            <li>{{ form_row(category.name) }}</li>
+        {% for cat in form.category %}
+            <li>{{ form_row(cat.name) }}
+            {{form_row(cat.description)}}</li>
         {% endfor %}
     </ul>
     <button class="btn btn-success">
@@ -16,12 +21,17 @@
 var $collectionHolder;
 
 //setup an "add a tag" link
-var $addTodoButton = $('<button type="button" class="add_todo_link">Ajouter une catégorie</button>');
-var $newLinkLi = $('<li></li>').append($addTodoButton);
+var $addCategoryButton = $('<button type="button" class="btn my-4">Ajouter une catégorie</button>');
+var $newLinkLi = $('<li></li>').append($addCategoryButton);
 
 jQuery(document).ready(function() {
  // Get the ul that holds the collection of tags
  $collectionHolder = $('ul.category');
+
+ //add a delete link to all of the existing tag form li elements
+ $collectionHolder.find('li').each(function() {
+     addCategoryFormDeleteLink($(this));
+ });
 
  // add the "add a tag" anchor and li to the tags ul
  $collectionHolder.append($newLinkLi);
@@ -30,13 +40,13 @@ jQuery(document).ready(function() {
  // index when inserting a new item (e.g. 2)
  $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
- $addTodoButton.on('click', function(e) {
+ $addCategoryButton.on('click', function(e) {
      // add a new tag form (see next code block)
-     addTodoForm($collectionHolder, $newLinkLi);
+     addCategoryForm($collectionHolder, $newLinkLi);
  });
 });
 
-function addTodoForm($collectionHolder, $newLinkLi) {
+function addCategoryForm($collectionHolder, $newLinkLi) {
     // Get the data-prototype explained earlier
     var prototype = $collectionHolder.data('prototype');
 
@@ -59,7 +69,21 @@ function addTodoForm($collectionHolder, $newLinkLi) {
     // Display the form in the page in an li, before the "Add a tag" link li
     var $newFormLi = $('<li></li>').append(newForm);
 
+    // add a delete link to the new form
+    addCategoryFormDeleteLink($newFormLi);
+
     $newLinkLi.before($newFormLi);
 }
+
+function addCategoryFormDeleteLink($categoryFormLi) {
+    var $removeFormButton = $('<button type="button" class="btn">Supprimer la catégorie</button>');
+    $categoryFormLi.append($removeFormButton);
+
+    $removeFormButton.on('click', function(e) {
+        // remove the li for the todo form
+        $categoryFormLi.remove();
+    });
+}
+
 </script>
 {% endblock %}
