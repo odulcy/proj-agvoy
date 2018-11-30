@@ -7,6 +7,11 @@
   font-family: "Jukebox";
   src: url("jk.otf");
 }
+
+@font-face {
+  font-family: "Bakery";
+  src: url("bakery.otf");
+}
 .gtTitle{
    font-family: Milestone ;
    font-size: 4.2em;
@@ -52,4 +57,23 @@
     background-image: none;
     background-color: #000000;
   }
+}
+
+#contact{
+  color: white;
+  font-size:1.5em;
+  padding-bottom: 20px;
+
+}
+
+.titreactu{
+  font-size: 6em;
+  font-family: Bakery;
+}
+
+.pub{
+  width: 40em;
+  height: 40em;
+  padding: 40px;
+
 }
